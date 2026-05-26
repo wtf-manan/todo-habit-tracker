@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo + Habit Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace">
+        <section class="panel todo-panel" aria-labelledby="todoHeading">
+          <div class="panel-header">
+            <div>
+              <h2 id="todoHeading">Todo list</h2>
+            </div>
+            <div class="segmented" role="tablist" aria-label="Task filter">
+              <button class="segment active" type="button" data-filter="all">All Task</button>
+              <button class="segment" type="button" data-filter="done">Done</button>
+            </div>
+          </div>
+
+          <form id="taskForm" class="entry-form">
+            <label class="sr-only" for="taskInput">New task</label>
+            <input id="taskInput" name="task" type="text" placeholder="Add a task" autocomplete="off" />
+            <select id="taskPriority" name="priority" aria-label="Priority">
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+              <option value="low">Low</option>
+            </select>
+            <button class="primary-btn" type="submit">Add</button>
+          </form>
+
+          <ul id="taskList" class="task-list" aria-live="polite"></ul>
+          <p id="taskEmpty" class="empty-state">No tasks here yet.</p>
+        </section>
+
+        <section class="habit-panel" aria-labelledby="habitHeading">
+          <div class="sheet-title">
+            <h2 id="habitHeading">Habit Tracker</h2>
+          </div>
+
+          <form id="habitForm" class="entry-form habit-entry">
+            <label class="sr-only" for="habitInput">New habit</label>
+            <input id="habitInput" name="habit" type="text" placeholder="Add a habit" autocomplete="off" />
+            <button class="primary-btn" type="submit">Add</button>
+            <button id="resetTodayBtn" class="ghost-btn" type="button">Reset today</button>
+          </form>
+
+          <div class="sheet-scroll">
+            <div class="week-label" id="weekTitle">This Week</div>
+            <table id="habitTable" class="habit-table" aria-live="polite"></table>
+          </div>
+          <p id="habitEmpty" class="empty-state">No habits yet.</p>
+        </section>
+      </section>
+    </main>
+
+    <template id="taskTemplate">
+      <li class="task-item">
+        <label class="check-wrap">
+          <input class="task-check" type="checkbox" />
+          <span class="custom-check" aria-hidden="true"></span>
+        </label>
+        <div class="task-body">
+          <span class="task-title"></span>
+          <span class="task-meta"></span>
+        </div>
+        <button class="icon-btn delete-task" type="button" aria-label="Delete task">x</button>
+      </li>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
